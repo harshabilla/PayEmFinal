@@ -1,0 +1,57 @@
+﻿@model PayEmFinal.Models.UPI
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+<style>
+    .inner {
+        width: 380px;
+        height: 380px;
+        top: 35%;
+        left: 42.5%;
+        margin-right: -50%;
+        position: absolute;
+        transform: translate(-50 %, -50 %);
+    }
+
+    #Header {
+        margin-top: 170px;
+        margin-left: 30px;
+        text-align: center;
+    }
+
+    .button {
+        margin-left: 100px;
+    }
+
+    .link {
+        margin-top: 20px;
+        margin-left: 72px;
+    }
+</style>
+<h4 id="Header">Enter UPI Pin</h4>
+<div class="outer">
+    <div class="inner">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UPIPin@*, htmlAttributes: new { @class = "control-label col-md-2" }*@)
+                    <br />
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UPIPin, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                        @Html.ValidationMessageFor(model => model.UPIPin, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="button">
+                    <input type="submit" value="Done" class="btn btn-default" />
+                </div>
+                <div class="link">
+                    @Html.ActionLink("Cancel Transaction", "ToAccount")
+                </div>
+                @ViewBag.Message
+            </div>
+        }
+    </div>
+</div>

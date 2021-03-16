@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbPayEmModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BankDetails">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="IFSC" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CustomerBankDetailsConfidential">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="NameOfTheCustomer" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="IFSC" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ValidUpto" Type="date" Nullable="false" />
+          <Property Name="CVV" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Balance" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="FirstName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="DebitCardDetails">
+          <Key>
+            <PropertyRef Name="DebitCardNumber" />
+          </Key>
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="NameOnDebitCard" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DebitCardNumber" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ValidFrom" Type="date" Nullable="false" />
+          <Property Name="ValidUpto" Type="date" Nullable="false" />
+          <Property Name="CVV" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fasttag">
+          <Key>
+            <PropertyRef Name="FasttagId" />
+          </Key>
+          <Property Name="FasttagId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CarNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WalletAmount" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MobileCompanies">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Balance" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="TransactionId" />
+          </Key>
+          <Property Name="FromUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ToUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="TransactionId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Amount" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FromCard" Type="nvarchar" MaxLength="128" />
+          <Property Name="ToCard" Type="nvarchar" MaxLength="128" />
+          <Property Name="TransactionTime" Type="datetime" Nullable="false" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UPI">
+          <Key>
+            <PropertyRef Name="UPIID" />
+          </Key>
+          <Property Name="UPIID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UPIPin" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BankDetails_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="BankDetails" Type="Self.BankDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="PhoneNumber" />
+            </Principal>
+            <Dependent Role="BankDetails">
+              <PropertyRef Name="PhoneNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DebitCardDetails_BankDetails">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="DebitCardDetails" Type="Self.DebitCardDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="PhoneNumber" />
+            </Principal>
+            <Dependent Role="DebitCardDetails">
+              <PropertyRef Name="PhoneNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UPI_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="UPI" Type="Self.UPI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="PhoneNumber" />
+            </Principal>
+            <Dependent Role="UPI">
+              <PropertyRef Name="PhoneNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbPayEmModelStoreContainer">
+          <EntitySet Name="BankDetails" EntityType="Self.BankDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerBankDetailsConfidential" EntityType="Self.CustomerBankDetailsConfidential" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DebitCardDetails" EntityType="Self.DebitCardDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fasttag" EntityType="Self.Fasttag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MobileCompanies" EntityType="Self.MobileCompanies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UPI" EntityType="Self.UPI" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BankDetails_Customers" Association="Self.FK_BankDetails_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="BankDetails" EntitySet="BankDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DebitCardDetails_BankDetails" Association="Self.FK_DebitCardDetails_BankDetails">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="DebitCardDetails" EntitySet="DebitCardDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UPI_Customers" Association="Self.FK_UPI_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="UPI" EntitySet="UPI" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbPayEmModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BankDetail">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Name="AccountNumber" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BankName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IFSC" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_BankDetails_Customers" FromRole="BankDetails" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="CustomerBankDetailsConfidential">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Name="AccountNumber" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameOfTheCustomer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BankName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IFSC" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CardNumber" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ValidUpto" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CVV" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Balance" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BankDetails" Relationship="Self.FK_BankDetails_Customers" FromRole="Customers" ToRole="BankDetails" />
+          <NavigationProperty Name="DebitCardDetails" Relationship="Self.FK_DebitCardDetails_BankDetails" FromRole="Customers" ToRole="DebitCardDetails" />
+          <Property Name="UserType" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UPIs" Relationship="dbPayEmModel.FK_UPI_Customers" FromRole="Customer" ToRole="UPI" />
+        </EntityType>
+        <EntityType Name="DebitCardDetail">
+          <Key>
+            <PropertyRef Name="DebitCardNumber" />
+          </Key>
+          <Property Name="AccountNumber" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BankName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameOnDebitCard" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DebitCardNumber" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ValidFrom" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ValidUpto" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CVV" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_DebitCardDetails_BankDetails" FromRole="DebitCardDetails" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="Fasttag">
+          <Key>
+            <PropertyRef Name="FasttagId" />
+          </Key>
+          <Property Name="FasttagId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CarNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WalletAmount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MobileCompany">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="CustomerName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Balance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BankDetails_Customers">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+          <End Role="BankDetails" Type="Self.BankDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="PhoneNumber" />
+            </Principal>
+            <Dependent Role="BankDetails">
+              <PropertyRef Name="PhoneNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DebitCardDetails_BankDetails">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+          <End Role="DebitCardDetails" Type="Self.DebitCardDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="PhoneNumber" />
+            </Principal>
+            <Dependent Role="DebitCardDetails">
+              <PropertyRef Name="PhoneNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbPayEmEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BankDetails" EntityType="Self.BankDetail" />
+          <EntitySet Name="CustomerBankDetailsConfidentials" EntityType="Self.CustomerBankDetailsConfidential" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="DebitCardDetails" EntityType="Self.DebitCardDetail" />
+          <EntitySet Name="Fasttags" EntityType="Self.Fasttag" />
+          <EntitySet Name="MobileCompanies" EntityType="Self.MobileCompany" />
+          <AssociationSet Name="FK_BankDetails_Customers" Association="Self.FK_BankDetails_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="BankDetails" EntitySet="BankDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DebitCardDetails_BankDetails" Association="Self.FK_DebitCardDetails_BankDetails">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="DebitCardDetails" EntitySet="DebitCardDetails" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="dbPayEmModel.sysdiagram" />
+          <EntitySet Name="Transactions" EntityType="dbPayEmModel.Transaction" />
+          <EntitySet Name="UPIs" EntityType="dbPayEmModel.UPI" />
+          <AssociationSet Name="FK_UPI_Customers" Association="dbPayEmModel.FK_UPI_Customers">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="UPI" EntitySet="UPIs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="TransactionId" />
+          </Key>
+          <Property Name="FromUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ToUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FromCard" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ToCard" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TransactionType" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          </EntityType>
+        <EntityType Name="UPI">
+          <Key>
+            <PropertyRef Name="UPIID" />
+          </Key>
+          <Property Name="UPIID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UPIPin" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="dbPayEmModel.FK_UPI_Customers" FromRole="UPI" ToRole="Customer" />
+        </EntityType>
+        <Association Name="FK_UPI_Customers">
+          <End Type="dbPayEmModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="dbPayEmModel.UPI" Role="UPI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="PhoneNumber" />
+            </Principal>
+            <Dependent Role="UPI">
+              <PropertyRef Name="PhoneNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbPayEmModelStoreContainer" CdmEntityContainer="dbPayEmEntities">
+          <EntitySetMapping Name="BankDetails">
+            <EntityTypeMapping TypeName="dbPayEmModel.BankDetail">
+              <MappingFragment StoreEntitySet="BankDetails">
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="IFSC" ColumnName="IFSC" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerBankDetailsConfidentials">
+            <EntityTypeMapping TypeName="dbPayEmModel.CustomerBankDetailsConfidential">
+              <MappingFragment StoreEntitySet="CustomerBankDetailsConfidential">
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="NameOfTheCustomer" ColumnName="NameOfTheCustomer" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="IFSC" ColumnName="IFSC" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="ValidUpto" ColumnName="ValidUpto" />
+                <ScalarProperty Name="CVV" ColumnName="CVV" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="dbPayEmModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DebitCardDetails">
+            <EntityTypeMapping TypeName="dbPayEmModel.DebitCardDetail">
+              <MappingFragment StoreEntitySet="DebitCardDetails">
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="NameOnDebitCard" ColumnName="NameOnDebitCard" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DebitCardNumber" ColumnName="DebitCardNumber" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="ValidUpto" ColumnName="ValidUpto" />
+                <ScalarProperty Name="CVV" ColumnName="CVV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fasttags">
+            <EntityTypeMapping TypeName="dbPayEmModel.Fasttag">
+              <MappingFragment StoreEntitySet="Fasttag">
+                <ScalarProperty Name="WalletAmount" ColumnName="WalletAmount" />
+                <ScalarProperty Name="FasttagId" ColumnName="FasttagId" />
+                <ScalarProperty Name="CarNumber" ColumnName="CarNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MobileCompanies">
+            <EntityTypeMapping TypeName="dbPayEmModel.MobileCompany">
+              <MappingFragment StoreEntitySet="MobileCompanies">
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="dbPayEmModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="dbPayEmModel.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="TransactionTime" ColumnName="TransactionTime" />
+                <ScalarProperty Name="ToCard" ColumnName="ToCard" />
+                <ScalarProperty Name="FromCard" ColumnName="FromCard" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="ToUser" ColumnName="ToUser" />
+                <ScalarProperty Name="FromUser" ColumnName="FromUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UPIs">
+            <EntityTypeMapping TypeName="dbPayEmModel.UPI">
+              <MappingFragment StoreEntitySet="UPI">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="UPIPin" ColumnName="UPIPin" />
+                <ScalarProperty Name="UPIID" ColumnName="UPIID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

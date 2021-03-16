@@ -1,0 +1,98 @@
+﻿@model IEnumerable<PayEmFinal.Models.CustomerBankDetailsConfidential>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <br />
+    @*<script>
+            var Balances
+            var data = JSON.stringify({ 'list': Balances });
+            function GetBalance() {
+                $.ajax({
+                    url: "/Home/PersonalAccounts",
+                    method: "Get",
+                    success: function (data) {
+                        $("#Bln").data;
+                    },
+                    error: function (err) {
+                        console.error(err);
+                    }
+                })
+            }
+        </script>*@
+    <table class="table">
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IFSC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CardNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Balance)
+                @*<input type="button" onclicl="GetBalance()" value="Balance" />*@
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Default", "ByPass", new { CardNo = item.CardNumber })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BankName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IFSC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CardNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Balance)
+                    @*<p id="Bln"></p>*@
+                </td>
+                <td>
+                    @Html.ActionLink("Add Money", "ByPass", new { CardNo = item.CardNumber })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
+<script>
+    function GetBalance()
+    {
+        $.ajax({
+            url: "/Home/PersonalAccounts",
+            method="Get",
+            success: function (data) {
+                data = JSON.parse(data);
+                $("#Bln").text(data.Balances);
+            },
+            error: function (err) {
+                console.error(err);
+            }
+        })
+
+    }
+</script>
